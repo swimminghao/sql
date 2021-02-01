@@ -1,3 +1,4 @@
+
 select count(1)
 from report_task_new;
 
