@@ -87,14 +87,22 @@ INSERT INTO temp_report_complete.report_process_task_new (status, ORDER_CODE, RE
 select status, ORDER_CODE, RECOGNITION_CODE, TEMPLATE_TYPE, remark, CREATE_TIME, UPDATE_TIME
 from temp_report_complete.report_process_task_new1;
 
-select count(*) as c,TEMPLATE_TYPE from report_process_task_new1 group by TEMPLATE_TYPE order by c desc;
+select count(*) as c,TEMPLATE_TYPE from report_process_task_new1 where status = 1 group by TEMPLATE_TYPE order by c desc;
 
-update report_process_task_new1 set status = 1 where status = 0 and TEMPLATE_TYPE ='RUICI' limit 5000;
+update report_process_task_new1 set status = 1 where status = 0 and TEMPLATE_TYPE in ('XIKANG','MEINIAN','PUHUI','AIKANG','MEINIAN_HTML');
 
+
+select COUNT(1) from report_process_task_new1 where status  = 0 and TEMPLATE_TYPE = 'XIKANG';
 select COUNT(1) from report_process_task_new1 where status  = 1;
-select COUNT(1) from report_process_task_new1 where status  = 2;
 select * from report_process_task_new1 where status  = -1;
 select * from report_process_task_new1 where status  = 1;
+
+select count(*) from report_process_task_new1 where status != 0;
+select count(*) from report_process_task_new1;
+
+select * from report_process_task_new1 where status != 0;
+
+select * from report_process_task_new1 where TEMPLATE_TYPE = 'DEZHOUTIANRUI' and UPDATE_TIME > '2021-02-03';
 
 select * from report_process_task_new1 where ORDER_CODE in( '247361927855','000755235760','043773028748','944930131569','000053944024');
 select * from report_process_task_new1 where ORDER_CODE in( '247361927855','000755235760','043773028748','944930131569','000053944024');
